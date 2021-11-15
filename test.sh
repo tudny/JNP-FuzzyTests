@@ -8,8 +8,6 @@ else
     echo -e "students machine not detected. Settings g++-10 as default compiler"
 fi
 
-gcc --version | awk '/gcc/ && ($3+0)>9.1{print "Version is greater than 9.1"}'
-
 CORE='\033['
 RED=${CORE}'0;31m'
 GREEN=${CORE}'0;32m'
