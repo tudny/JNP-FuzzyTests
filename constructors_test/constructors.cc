@@ -65,6 +65,8 @@ void moving_constructor() {
 
 int main() {
     constructors();
+    coping_constructor();
+    moving_constructor();
 
     return 0;
 }
