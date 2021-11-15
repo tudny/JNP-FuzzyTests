@@ -1,5 +1,15 @@
 #!/bin/bash
 
+COMPILER=g++-10
+if [ "$HOSTNAME" = "students" ]; then
+    echo -e "Detected running script on students. Settings g++ as default compiler"
+    COMPILER=g++
+else
+    echo -e "students machine not detected. Settings g++-10 as default compiler"
+fi
+
+gcc --version | awk '/gcc/ && ($3+0)>9.1{print "Version is greater than 9.1"}'
+
 CORE='\033['
 RED=${CORE}'0;31m'
 GREEN=${CORE}'0;32m'
@@ -12,7 +22,7 @@ correct=0
 function test_compilable {
     directory=$1
 
-    if g++-10 -Wall -Wextra -O2 -std=c++20 "${directory}"/*.cc fuzzy.cc; then
+    if ${COMPILER} -Wall -Wextra -O2 -std=c++20 -lm "${directory}"/*.cc fuzzy.cc; then
         echo -e "${GREEN}Compiled${CLEAR}"
 
         if ./a.out; then
@@ -33,7 +43,7 @@ function test_compilable {
 function test_uncompilable {
     directory=$1
 
-    if g++-10 -Wall -Wextra -O2 -std=c++20 "${directory}"/*.cc fuzzy.cc 2> /dev/null; then
+    if ${COMPILER} -Wall -Wextra -O2 -std=c++20 -lm "${directory}"/*.cc fuzzy.cc 2> /dev/null; then
         echo -e "${RED}Compiled and shouldn't.${CLEAR}"
         rm a.out
         (( errors = errors + 1 ))
