@@ -22,7 +22,7 @@ correct=0
 function test_compilable {
     directory=$1
 
-    if g++-10 -Wall -Wextra -O2 -std=c++20 ${directory}*.cc fuzzy.cc; then
+    if g++-10 -Wall -Wextra -O2 -std=c++20 "${directory}"/*.cc fuzzy.cc; then
         echo -e "${GREEN}Compiled${CLEAR}"
 
         if ./a.out; then
@@ -42,7 +42,7 @@ function test_compilable {
 function test_uncompilable {
     directory=$1
 
-    if g++-10 -Wall -Wextra -O2 -std=c++20 ${directory}*.cc fuzzy.cc 2> /dev/null; then
+    if g++-10 -Wall -Wextra -O2 -std=c++20 "${directory}"/*.cc fuzzy.cc 2> /dev/null; then
         echo -e "${RED}Compiled and shouldn't.${CLEAR}"
         rm a.out
         (( errors = errors + 1 ))
@@ -63,9 +63,9 @@ for directory in */ ; do
     echo -e "${BLUE}Testing $directory${CLEAR}"
 
     if [[ $directory == "bad_"* ]]; then
-        test_uncompilable ${directory}
+        test_uncompilable "${directory}"
     else
-        test_compilable ${directory}
+        test_compilable "${directory}"
     fi
 
     echo -e "${BLUE}End${CLEAR}"
