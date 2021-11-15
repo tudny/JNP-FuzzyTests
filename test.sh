@@ -36,6 +36,7 @@ function test_compilable {
         rm a.out
     else
         echo -e "${RED}Test didn't compile.${CLEAR}"
+        (( errors = errors + 1 ))
     fi
 }
 
