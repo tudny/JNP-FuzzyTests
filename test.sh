@@ -6,16 +6,6 @@ GREEN=${CORE}'0;32m'
 CLEAR=${CORE}'0m'
 BLUE=${CORE}'0;34m'
 
-# Linking task solutions
-
-if [ ! -f fuzzy.h ]; then
-    ln -s $1/fuzzy.h .
-fi
-
-if [ ! -f fuzzy.cc ]; then
-    ln -s $1/fuzzy.cc .
-fi
-
 errors=0
 correct=0
 
@@ -55,11 +45,8 @@ function test_uncompilable {
 
 # Running the tester
 
-echo -e "+============================+"
-echo -e "| Testing Fuzzy Numbers Task |"
-echo -e "+============================+"
-
-for directory in */ ; do
+function test_single {
+    directory="$1"
     echo -e "=========================================="
     echo -e "${BLUE}Testing $directory${CLEAR}"
 
@@ -70,13 +57,50 @@ for directory in */ ; do
     fi
 
     echo -e "${BLUE}End${CLEAR}"
-done
+}
 
-(( ratio = correct * 100 / (correct + errors) ))
+function test_all {
 
-echo -e "+============================+"
-echo -e "| Raport:"
-echo -e "| ${RED}errors  = ${errors}${CLEAR}"
-echo -e "| ${GREEN}correct = ${correct}${CLEAR}"
-echo -e "| ratio   = ${ratio}%"
-echo -e "+============================+"
+    echo -e "+============================+"
+    echo -e "| Testing Fuzzy Numbers Task |"
+    echo -e "+============================+"
+
+    for directory in */ ; do
+        test_single "$directory"
+    done
+
+    (( ratio = correct * 100 / (correct + errors) ))
+
+    echo -e "+============================+"
+    echo -e "| Raport:"
+    echo -e "| ${RED}errors  = ${errors}${CLEAR}"
+    echo -e "| ${GREEN}correct = ${correct}${CLEAR}"
+    echo -e "| ratio   = ${ratio}%"
+    echo -e "+============================+"
+}
+
+# Checking args
+
+if [ -z $1 ]; then
+    echo -e "No path to fuzzy.h (fuzzy.cc) directory"
+    exit 1
+fi
+
+# Linking task solutions
+
+if [ ! -f fuzzy.h ]; then
+    ln -s $1/fuzzy.h .
+fi
+
+if [ ! -f fuzzy.cc ]; then
+    ln -s $1/fuzzy.cc .
+fi
+
+# Testing all
+
+if [ -z $2 ]; then
+    echo -e "No test selected. Testing all."
+    test_all
+else
+    test_single "$2"
+fi
