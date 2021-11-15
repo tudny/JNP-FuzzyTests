@@ -31,7 +31,7 @@ void minus() {
 }
 
 void minuse() {
-    constTriFuzzyNum x(10, 20, 30);
+    const TriFuzzyNum x(10, 20, 30);
     const TriFuzzyNum y(40, 50, 60);
 
     x -= y;
