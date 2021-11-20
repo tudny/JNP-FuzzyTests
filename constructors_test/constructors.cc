@@ -23,7 +23,7 @@ void constructors() {
     assert(Utils::equals(num2, num4));
     assert(Utils::equals(num3, num4));
 
-    Logger::log("TriFuzzyNum real_t constructor seams to work.");
+    Logger::log("TriFuzzyNum real_t constructor seems to work.");
 }
 
 void coping_constructor() {
@@ -47,7 +47,7 @@ void coping_constructor() {
 
     assert(Utils::equals(l, k));
 
-    Logger::log("TriFuzzyNum coping constructor seams to work.");
+    Logger::log("TriFuzzyNum coping constructor seems to work.");
 }
 
 void moving_constructor() {
@@ -60,7 +60,7 @@ void moving_constructor() {
 
     assert(Utils::equals(c, TriFuzzyNum(30, 40, 50)));
 
-    Logger::log("TriFuzzyNum moving constructor seams to work.");
+    Logger::log("TriFuzzyNum moving constructor seems to work.");
 }
 
 int main() {
