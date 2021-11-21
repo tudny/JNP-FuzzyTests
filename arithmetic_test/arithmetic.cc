@@ -3,7 +3,7 @@
 #include "../logger.h"
 #include <cassert>
 
-void plus() {
+void _plus() {
     TriFuzzyNum x(10, 20, 30);
     TriFuzzyNum y(40, 50, 60);
 
@@ -12,7 +12,7 @@ void plus() {
     assert(Utils::equals(z, TriFuzzyNum(50, 70, 90)));
 }
 
-void pluse() {
+void _pluse() {
     TriFuzzyNum x(10, 20, 30);
     TriFuzzyNum y(40, 50, 60);
 
@@ -21,7 +21,7 @@ void pluse() {
     assert(Utils::equals(x, TriFuzzyNum(50, 70, 90)));
 }
 
-void minus() {
+void _minus() {
     TriFuzzyNum x(10, 20, 30);
     TriFuzzyNum y(40, 50, 60);
 
@@ -30,7 +30,7 @@ void minus() {
     assert(Utils::equals(z, TriFuzzyNum(-50, -30, -10)));
 }
 
-void minuse() {
+void _minuse() {
     TriFuzzyNum x(10, 20, 30);
     TriFuzzyNum y(40, 50, 60);
 
@@ -39,7 +39,7 @@ void minuse() {
     assert(Utils::equals(x, TriFuzzyNum(-50, -30, -10)));
 }
 
-void cdot() {
+void _cdot() {
     TriFuzzyNum x(10, 20, 30);
     TriFuzzyNum y(40, 50, 60);
 
@@ -48,7 +48,7 @@ void cdot() {
     assert(Utils::equals(z, TriFuzzyNum(400, 1000, 1800)));
 }
 
-void cdote() {
+void _cdote() {
     TriFuzzyNum x(10, 20, 30);
     TriFuzzyNum y(40, 50, 60);
 
@@ -59,14 +59,14 @@ void cdote() {
 
 int main() {
 
-    plus();
-    pluse();
+    _plus();
+    _pluse();
 
-    minus();
-    minuse();
+    _minus();
+    _minuse();
 
-    cdot();
-    cdote();
+    _cdot();
+    _cdote();
 
     return 0;
 }
