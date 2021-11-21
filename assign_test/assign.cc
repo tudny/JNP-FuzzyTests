@@ -28,7 +28,7 @@ void coping_assignment() {
 
     assert(Utils::equals(l, k));
 
-    Logger::log("TriFuzzyNum coping assignment seams to work.");
+    Logger::log("TriFuzzyNum coping assignment seems to work.");
 }
 
 void moving_assignment() {
@@ -43,7 +43,7 @@ void moving_assignment() {
 
     assert(Utils::equals(c, TriFuzzyNum(30, 40, 50)));
 
-    Logger::log("TriFuzzyNum moving assignment seams to work.");
+    Logger::log("TriFuzzyNum moving assignment seems to work.");
 }
 
 int main() {
